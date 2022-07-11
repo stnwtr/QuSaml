@@ -46,17 +46,17 @@ public class PostQueryFactory implements CrudQueryFactory<Post, Integer> {
 
     @Override
     public DQLQuery<List<Post>> readAllQuery() {
-        return null;
+        return new ReadAllQuery();
     }
 
     @Override
     public DMLQuery updateQuery(Integer integer, Post post) {
-        return null;
+        return new UpdateQuery(integer, post);
     }
 
     @Override
     public DMLQuery deleteQuery(Integer integer) {
-        return null;
+        return new DeleteQuery(integer);
     }
 
     private class CreateTableQuery implements DDLQuery {
@@ -77,7 +77,7 @@ public class PostQueryFactory implements CrudQueryFactory<Post, Integer> {
                         "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
                         "updated_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
                         CONSTRAINT "posts_pk" PRIMARY KEY ("id"),
-                        CONSTRAINT "posts_users_fk" FOREIGN KEY ("author") REFERENCES "users" ("id")
+                        CONSTRAINT "posts_users_fk" FOREIGN KEY ("author") REFERENCES "users" ("id") ON DELETE CASCADE
                     )""";
         }
     }

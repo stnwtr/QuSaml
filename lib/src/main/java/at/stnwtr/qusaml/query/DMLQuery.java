@@ -26,7 +26,7 @@ public interface DMLQuery extends Query<Integer> {
     @Override
     default Function<SQLException, Integer> exceptionHandler() {
         return sqlException -> {
-            System.err.println(sqlException.getErrorCode());
+            System.err.println(sqlException.getMessage());
             return -1;
         };
     }
