@@ -12,13 +12,13 @@ public interface CrudQueryFactory<T, ID> {
 
     DDLQuery dropTableQuery();
 
-    DMLQuery create(T t);
+    DMLQuery createQuery(T t);
 
-    DQLQuery<Optional<T>> readOne(ID id);
+    DQLQuery<Optional<T>> readOneQuery(ID id);
 
-    DQLQuery<List<T>> readAll();
+    DQLQuery<List<T>> readAllQuery();
 
-    DMLQuery update(ID id, T t);
+    DMLQuery updateQuery(ID id, T t);
 
-    DMLQuery delete(ID id);
+    DMLQuery deleteQuery(ID id);
 }
